@@ -1,0 +1,13 @@
+feature to add:
+- able to know that user is used uppercase
+- able to delete when use press backspace
+- go to line after 10s that use did not press any key (only if user has type other caracter
+- export k-eye as .exe
+- add time to each line e.g: [29/08/21 17:35:00 - 29/08/21 17:35:30]
+- accept one go line other just count and the number of go line
+- create log for each software
+- create file by day
+- add options: limit the time to listen, delete other file, internet communication, alert feature
+- made exceptions
+- define the output
+- set code to stop listening

