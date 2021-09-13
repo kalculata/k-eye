@@ -1,5 +1,4 @@
 feature to add:
-- able to know that user is used uppercase
 - able to delete when use press backspace
 - go to line after 10s that use did not press any key (only if user has type other caracter
 - export k-eye as .exe
@@ -9,7 +8,5 @@ feature to add:
 - create file by day
 - add options: limit the time to listen, delete other file, internet communication, alert feature
 - made exceptions
-- define the output
 - set code to stop listening
-- add option: -o
 - add feature to set time to listen

