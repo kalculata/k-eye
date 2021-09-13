@@ -2,6 +2,6 @@ log.txt
 logs/
 main.py
 memo.txt
-venv/
+env/
 .idea/
 note.ipynb
