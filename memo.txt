@@ -11,6 +11,5 @@ feature to add:
 - made exceptions
 - define the output
 - set code to stop listening
-- ad option 
-
-- add option: -i -o
+- add option: -o
+- add feature to set time to listen
